@@ -6,10 +6,8 @@ import './index.css' //自己写的样式要写在组件库后面
 import App from './App'
 import { BrowserRouter as Router } from 'react-router-dom'
 ReactDOM.render(
-  <React.StrictMode>
-    <Router>
-      <App />
-    </Router>
-  </React.StrictMode>,
+  <Router>
+    <App />
+  </Router>,
   document.getElementById('root')
 )

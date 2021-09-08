@@ -6,6 +6,23 @@ import Profile from "../Profile";
 import HouseList from "../HouseList";
 import { TabBar } from 'antd-mobile';
 import './index.css'
+const TabBarItems = [{
+  title: "首页",
+  icon: "icon-ind",
+  path: "/home"
+}, {
+  title: "找房",
+  path: "/home/list",
+  icon: "icon-findHouse"
+}, {
+  title: "资讯",
+  path: "/home/news",
+  icon: "icon-infom"
+}, {
+  title: "我的",
+  path: "/home/profile",
+  icon: "icon-my"
+}]
 export default class Home extends React.Component {
   state = {
     //默认选中的tabbar菜单项
@@ -14,6 +31,26 @@ export default class Home extends React.Component {
     // hidden: false,
     // 全屏
     // fullScreen: false,
+  }
+  renderTabBarItem = () => {
+    return TabBarItems.map(item => (<TabBar.Item
+      title={item.title}
+      key={item.title}
+      icon={
+        <i className={`iconfont ${item.icon}`} />
+      }
+      selectedIcon={
+        <i className={`iconfont ${item.icon}`} />
+      }
+      selected={this.state.selectedTab === item.path}
+      onPress={() => {
+        this.setState({
+          selectedTab: item.path,
+        });
+        this.props.history.push(item.path)
+      }}
+    >
+    </TabBar.Item>))
   }
   // 渲染每个TabBar内容
   // renderContent(pageText) {
@@ -43,97 +80,25 @@ export default class Home extends React.Component {
   //     </div>
   //   );
   // }
+
   render() {
     return <div className="home">
       {/* 以父路由path开头 */}
       <Route path="/home/news" component={News}></Route>
-      <Route path="/home/index" component={Index}></Route>
+      <Route exact path="/home" component={Index}></Route>
       <Route path="/home/profile" component={Profile}></Route>
       <Route path="/home/list" component={HouseList}></Route>
-        <TabBar
-          //未选中颜色
-          unselectedTintColor="#888888"
-          //选中字体颜色
-          tintColor="#3172F4"
-          barTintColor="white"
-          // hidden={this.state.hidden}
-          noRenderContent={true}
-        >
-          <TabBar.Item
-            title="首页"
-            key="Life"
-            icon={
-              <i className="iconfont icon-ind" />
-            }
-            selectedIcon={
-              <i className="iconfont icon-ind" />
-            }
-            selected={this.state.selectedTab === '/home/index'}
-            onPress={() => {
-              this.setState({
-                selectedTab: '/home/index',
-              });
-              this.props.history.push('/home/index')
-            }}
-            data-seed="logId"
-          >
-          </TabBar.Item>
-          <TabBar.Item
-            icon={
-              <i className="iconfont icon-findHouse" />
-            }
-            selectedIcon={
-              <i className="iconfont icon-findHouse" />
-            }
-            title="找房"
-            key="Koubei"
-            selected={this.state.selectedTab === '/home/list'}
-            onPress={() => {
-              this.setState({
-                selectedTab: '/home/list',
-              });
-              this.props.history.push('/home/list')
-            }}
-            data-seed="logId1"
-          >
-          </TabBar.Item>
-          <TabBar.Item
-            icon={
-              <i className="iconfont icon-infom" />
-            }
-            selectedIcon={
-              <i className="iconfont icon-infom" />
-            }
-            title="资讯"
-            key="Friend" 
-            selected={this.state.selectedTab === '/home/news'}
-            onPress={() => {
-              this.setState({
-                selectedTab: '/home/news',
-              });
-              this.props.history.push('/home/news')
-            }}
-          >
-          </TabBar.Item>
-          <TabBar.Item
-            icon={
-              <i className="iconfont icon-my" />
-            }
-            selectedIcon={
-              <i className="iconfont icon-my" />
-            }
-            title="我的"
-            key="my"
-            selected={this.state.selectedTab === '/home/profile'}
-            onPress={() => {
-              this.setState({
-                selectedTab: '/home/profile',
-              });
-              this.props.history.push('/home/profile')
-            }}
-          >
-          </TabBar.Item>
-        </TabBar>
+      <TabBar
+        //未选中颜色
+        unselectedTintColor="#888888"
+        //选中字体颜色
+        tintColor="#3172F4"
+        barTintColor="white"
+        // hidden={this.state.hidden}
+        noRenderContent={true}
+      >
+        {this.renderTabBarItem()}
+      </TabBar>
     </div>
   }
 

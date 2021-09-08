@@ -7,4 +7,6 @@ html, body {
 
 * {
   box-sizing: border-box;
+  /*去掉 轮播图Chorme浏览器错误*/
+  touch-action: pan-y; 
 }
