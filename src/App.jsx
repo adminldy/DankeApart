@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import routes from './router'
 import { Switch, Route, Redirect } from 'react-router-dom'
+//引入百度地图API JS文件
 function App() {
   return (
     <div className="App">

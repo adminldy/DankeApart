@@ -1,4 +1,6 @@
 import React from "react"
-export default function CityList() {
-  return <div>CityList</div>
+export default class CityList extends React.Component {
+  render() {
+    return <div>CityList</div>
+  }
 }

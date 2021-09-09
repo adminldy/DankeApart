@@ -33,9 +33,9 @@ const navs = [{
   path: '/rent'
 }]
 //获取地理位置信息
-navigator.geolocation.getCurrentPosition(position => {
-  console.log(position)
-})
+// navigator.geolocation.getCurrentPosition(position => {
+//   console.log(position)
+// })
 const baseUrl = 'http://localhost:8080'
 export default class Index extends React.Component {
   state = {
