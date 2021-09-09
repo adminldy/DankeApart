@@ -4,6 +4,7 @@ import { Carousel, WingBlank, Flex, Grid } from 'antd-mobile';
 
 //导入axios
 import { get, post } from '../../api'
+import { getCurrentCity } from "../../utils";
 //引入cssmodules
 import s from './style.module.less'
 //导入导航菜单图片
@@ -45,6 +46,8 @@ export default class Index extends React.Component {
     groups: [],
     //最新咨询数据
     news: [],
+    //当前城市名称
+    curCityName: '北京',
     //是否加载轮播图
     isSwiperLoaded: false,
   }
@@ -70,6 +73,9 @@ export default class Index extends React.Component {
     this.getSwiper()
     this.getGroups()
     this.getNews()
+    getCurrentCity().then((res) => {
+      this.setState({curCityName: res.label})
+    })
   }
   //渲染轮播图结构
   renderSwipers() {
@@ -134,7 +140,7 @@ export default class Index extends React.Component {
           <Flex className={s.searchBox}>
             <Flex className={s.search}>
               <div className={s.location} onClick={() => this.props.history.push('/citylist')}>
-                <span className={s.name}>上海</span>
+                <span className={s.name}>{this.state.curCityName}</span>
                 <i className="iconfont icon-arrow"></i>
               </div>
               <div className={s.form} onClick={() => this.props.history.push('/search')}>
