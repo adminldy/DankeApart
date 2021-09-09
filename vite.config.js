@@ -1,6 +1,16 @@
 import { defineConfig } from 'vite'
 import reactRefresh from '@vitejs/plugin-react-refresh'
 import path from 'path'
+const resolveFixup = {
+  name: 'resolve-fixup',
+  setup(build) {
+    build.onResolve({ filter: / react-virtualized / }, async args => {
+      return {
+        path: path.resolve('./node_modules/react-virtualized/dist/umd/react-virtualized.js'),
+      }
+    })
+  },
+};
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [reactRefresh()],
@@ -31,6 +41,11 @@ export default defineConfig({
         //支持内联javascript
         javascriptEnabled: true
       }
+    }
+  },
+  optimizeDeps: {
+    esbuildOptions: {
+      plugins: [resolveFixup]
     }
   }
 })
