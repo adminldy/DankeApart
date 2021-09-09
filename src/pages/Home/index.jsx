@@ -23,6 +23,14 @@ const TabBarItems = [{
   path: "/home/profile",
   icon: "icon-my"
 }]
+/*
+  点击首页导航菜单,  导航菜单没有高亮
+  原来我们实现该功能的时候， 只考虑了点击以及第一次加载home组件的情况 但是 没有考虑不重新加载 Home组件的路由切换
+
+  解决方式： 添加componentUpdate 钩子函数
+            在钩子函数中判断路由地址是否切换
+            路由切换时， 让菜单高亮
+*/
 export default class Home extends React.Component {
   state = {
     //默认选中的tabbar菜单项
@@ -31,6 +39,13 @@ export default class Home extends React.Component {
     // hidden: false,
     // 全屏
     // fullScreen: false,
+  }
+  componentDidUpdate(prevProps) {
+    console.log('componentDidUpdate')
+    if(prevProps.location.pathname !== this.props.location.pathname) {
+      //路由发生切换了
+      this.setState({selectedTab: this.props.location.pathname})
+    }
   }
   renderTabBarItem = () => {
     return TabBarItems.map(item => (<TabBar.Item

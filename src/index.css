@@ -10,3 +10,7 @@ html, body {
   /*去掉 轮播图Chorme浏览器错误*/
   touch-action: pan-y; 
 }
+
+h2, p {
+  margin: 0;
+}
