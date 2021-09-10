@@ -117,7 +117,7 @@ export default class CityList extends React.Component {
   }
   render() {
     return <div className={s.cityList}>
-      <NavHeader title="城市列表" className={s.navHeader}></NavHeader>
+      <NavHeader title="城市列表" style={{marginTop: '-45px'}}></NavHeader>
       {/* 城市列表 */}
       <AutoSizer>
         {({ width, height }) => <List

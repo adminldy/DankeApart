@@ -13,7 +13,7 @@ export default class Map extends React.Component {
   render() {
     return <div className={s.map}>
       {/* 导航标题组件 */}
-      <NavHeader title="地图找房" onLeftClick={() => console.log('点击左侧按钮')}></NavHeader>
+      <NavHeader title="地图找房"></NavHeader>
       {/* 地图容器元素 */}
       <div id={s.container}></div>
     </div>

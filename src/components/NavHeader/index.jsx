@@ -13,13 +13,15 @@ class NavHeader extends React.Component {
       mode="light"
       icon={<i className="iconfont icon-back"></i>}
       onLeftClick={this.props.onLeftClick ? this.props.onLeftClick : this.defaultHandler}
-      className={s.header} 
+      className={s.header}
+      style={this.props.style} 
     >{this.props.title}</NavBar>
   }
 }
-NavBar.propTypes = {
+NavHeader.propTypes = {
   title: PropTypes.string.isRequired,
-  onLeftClick: PropTypes.func
+  onLeftClick: PropTypes.func,
+  style: PropTypes.object
 }
 // withRouter是高阶组件 传递组件参数 给他路由属性 在返回
 export default withRouter(NavHeader)
