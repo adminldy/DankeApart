@@ -11,6 +11,7 @@
     "axios": "^0.21.4",
     "less": "^4.1.1",
     "less-loader": "^10.0.1",
+    "prop-types": "^15.7.2",
     "react": "^17.0.0",
     "react-dom": "^17.0.0",
     "react-router-dom": "^5.3.0",
